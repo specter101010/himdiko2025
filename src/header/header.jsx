@@ -20,24 +20,25 @@ const dropdownActiveClass = 'scale-100 opacity-100 pointer-events-auto';
 
   return (
     <div
-      className="flex w-full justify-between items-center navbar-animate"
+      className="flex w-full justify-between items-center navbar-animate cursor-pointer"
       style={{ paddingLeft: '70px', paddingRight: '70px', paddingTop: '20px' }}
     >
       {/* Logo */}
-      <div className="flex items-center">
+      <a href="/" className="flex items-center" style={{ textDecoration: 'none' }}>
         <img className="w-20" src="assets/logo/himdiko.png" alt="Logo HIMDIKO" />
         <div style={{ marginLeft: '10px' }}>
-          <div className="text-xs ">UNIVERSITAS SRIWIJAYA</div>
+          <div className="text-xs text-black">UNIVERSITAS SRIWIJAYA</div>
           <div className="text-3xl font-[900] font-[Jaro] text-[#123524]">HIMDIKO</div>
         </div>
-      </div>
+      </a>
+
 
       {/* Navigasi */}
-      <ul className="flex items-center gap-20 text-lg">
+      <ul className="flex items-center gap-20 text-lg ">
         {/* Tentang Kita */}
         <li className="relative">
           <button
-            className="font-semibold flex items-center gap-1"
+            className="font-semibold flex items-center gap-1 cursor-pointer"
             onClick={() => toggleDropdown('tentang')}
           >
             Tentang Kita
@@ -56,20 +57,40 @@ const dropdownActiveClass = 'scale-100 opacity-100 pointer-events-auto';
             Sejarah
           </Link>
 
-            <a
-              href="#"
-              className="block px-4 py-2 text-sm font-normal text-gray-800 hover:bg-gray-100"
-              style={{ padding: '8px 16px' }}
-            >
-              Visi & Misi
-            </a>
+          <a
+  href="#"
+  onClick={(e) => {
+    e.preventDefault();
+
+    // Kalau sudah di halaman home, langsung scroll
+    if (window.location.pathname === '/') {
+      const el = document.querySelector('#visimisi');
+      if (el) {
+        window.history.replaceState(null, '', window.location.pathname);
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    } else {
+      // Kalau bukan di home, redirect dulu ke home dengan anchor
+      window.location.href = '/#visimisi';
+    }
+  }}
+  className="block px-4 py-2 text-sm font-normal text-gray-800 hover:bg-gray-100"
+  style={{ padding: '8px 16px' }}
+>
+  Visi & Misi
+</a>
+
+
+
           </div>
         </li>
 
         {/* Profile */}
         <li className="relative">
           <button
-            className="font-semibold"
+            className="font-semibold cursor-pointer"
             onClick={() => toggleDropdown('profile')}
           >
             Profile
@@ -102,7 +123,7 @@ const dropdownActiveClass = 'scale-100 opacity-100 pointer-events-auto';
         {/* Proker */}
         <li className="relative">
           <button
-            className="font-semibold"
+            className="font-semibold cursor-pointer"
             onClick={() => toggleDropdown('proker')}
           >
             Proker

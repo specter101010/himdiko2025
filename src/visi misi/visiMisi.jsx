@@ -3,7 +3,7 @@ import LogoAnimated from "../components/LogoAnimated";
 
 function VisiMisi() {
   return (
-    <div
+    <div id="visimisi"
     style={{paddingLeft: '70px', paddingRight: '70px',marginTop:"220px",}}
       className="w-full flex flex-col lg:flex-row justify-between items-center gap-10 px-6 lg:px-[70px] mt-[100px] lg:mt-[220px]"
     >
